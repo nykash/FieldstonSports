@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import SGInfo from './components/ShortGameInfo';
 import MediaInfo from './components/MediaInfo';
 import HomeScreen from './HomeScreen';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Pressable, TextInput, FlatList} from 'react-native';
@@ -13,8 +13,8 @@ const Tab = createBottomTabNavigator();
 export default function App() {
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
+    <NavigationContainer theme={MyTheme}>
+      <Tab.Navigator screenOptions={{headerShown: false}}>
         <Tab.Screen name="Home" component={HomeScreen}></Tab.Screen>
         <Tab.Screen name="Teams" component={TeamScreen}></Tab.Screen>
       </Tab.Navigator>
@@ -33,3 +33,15 @@ const styles = StyleSheet.create({
     color: "#ffa319"
   }
 });
+
+const MyTheme = {
+  ...DefaultTheme,
+  dark: true,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#ffa319',
+    card: 'rgb(0, 0, 0)',
+    border: 'rgb(0, 0, 0)',
+    text: '#ffa319'
+  },
+};
