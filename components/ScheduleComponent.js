@@ -5,7 +5,7 @@ const ScheduleComponent = ({item}) => {
     const {id, title, home, away, homeScore, awayScore} = item;
 
     return (
-        <View style={{width:"50%", backgroundColor: "#093642", padding: 8, paddingLeft: 20, paddingRight: 20, marginRight: 10, marginBottom: 10}}>
+        <View style={{width:"50%", backgroundColor: "#242424", padding: 8, paddingLeft: 20, paddingRight: 20, marginRight: 10, marginBottom: 10}}>
             <Text style={{textAlign: "center", color: "#ffa319"}}>{title}</Text>
             <View style={{paddingTop:"8%", flexDirection: "row", justifyContent:"space-between"}}>
                 <Text style={styles.regText}>{home}</Text>
