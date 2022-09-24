@@ -16,11 +16,13 @@ export const MyFeedComponent = ({item}) => {
 
     const roster = ['Antony Mendez', 'Shane Vang', 'Courtney Paul', 'Saniyah Crosby', 'Raiden Graves', 'Aryanna Pena', 'Maurice Burke', 'Kallie Fitzpatrick', 'Hana Carson', 'Elizabeth Michael', 'Savion Lewis', 'Jaliyah Frank']
     const [this_card, set_this_card] = useState(null);
+    const border_radius = 30;
     return (
-        <View style={{borderBottomColor: "black", borderBottomWidth: 1}}>
-            <CardFlip style={{height:Dimensions.get("window").height/3, padding: 0}} ref={(card) => set_this_card(card)} >
+        <View style={{}}>
+            <View style={{width: Dimensions.get("window").width, padding: 20, borderRadius: border_radius, backgroundColor: "rgba(52, 52, 52, 0.4)"}}>
+            <CardFlip style={{height:Dimensions.get("window").height/3, padding: 0, borderRadius: border_radius}} ref={(card) => set_this_card(card)} >
                 <TouchableOpacity style={{}} onPress={() => this_card.flip()}>
-                <ImageBackground style={{}} resizeMode="cover" source={{uri: "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt7303dbbd1a3d1a0f/60dc14d30401cb0ebfac1a00/40a30288ba7955266913a7414a3f5473a09070f2.jpg"}}>
+                <ImageBackground style={{borderRadius: border_radius}} resizeMode="cover" source={{uri: "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt7303dbbd1a3d1a0f/60dc14d30401cb0ebfac1a00/40a30288ba7955266913a7414a3f5473a09070f2.jpg"}}>
                     <View style={{height:Dimensions.get("window").height/3, justifyContent:"center", alignItems:"center", backgroundColor: "rgba(52, 52, 52, 0.6)"}}>
                         <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular', fontSize: 20}}>{name.name}</Text>
                     </View>
@@ -46,13 +48,22 @@ export const MyFeedComponent = ({item}) => {
                 </ImageBackground>
                 </TouchableOpacity>
             </CardFlip>
-            
-            
-            <SGInfo item={game}></SGInfo>
+            </View>
 
-            <RosterComponent item={{team_name: name}}></RosterComponent>
+            <View style={{height: Dimensions.get("window").height/30}}></View>
+            
+            <View style={{width: Dimensions.get("window").width, padding: 20, borderRadius: border_radius, backgroundColor: "rgba(52, 52, 52, 0.4)"}}>
+                <SGInfo item={game}></SGInfo>
+            </View>
+            <View style={{height: Dimensions.get("window").height/30}}></View>
 
-            <MediaInfo item={media}></MediaInfo> 
+            <View style={{width: Dimensions.get("window").width, padding: 20, borderRadius: border_radius, backgroundColor: "rgba(52, 52, 52, 0.4)"}}>
+                <RosterComponent item={{team_name: name}}></RosterComponent>
+            </View>
+            <View style={{height: Dimensions.get("window").height/30}}></View>
+
+
+            <MediaInfo border_radius={border_radius} item={media}></MediaInfo> 
             
         </View>
     )

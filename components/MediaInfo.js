@@ -11,7 +11,7 @@ import {
 import { convertDateToText } from '../DatesHelper';
 
 
-const MediaInfo = ({item}) => {
+const MediaInfo = ({item, border_radius=0}) => {
     const {id, date, title, blurb} = item;
 
     let [fontsLoaded] = useFonts({
@@ -28,7 +28,7 @@ const MediaInfo = ({item}) => {
     }
 
     return (
-        <View style={styles.homeHeader}>
+        <View style={[styles.homeHeader, {borderRadius: border_radius}]}>
             <View style={{flexDirection: "row", marginBottom: 20, justifyContent: "center", alignItems: "center"}}>
               <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular'}}>{convertDateToText(date)}</Text>
             </View>

@@ -12,7 +12,7 @@ export const EntireTeamInfoView = ({team}) => {
     return (
         <View>
             <View>
-                <Text></Text>
+                <Text> HELLO</Text>
             </View>
         </View>
     )

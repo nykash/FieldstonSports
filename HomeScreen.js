@@ -20,6 +20,7 @@ import {
 } from "@expo-google-fonts/dev";
 import { add, or } from 'react-native-reanimated';
 import { MyFeedComponent } from './components/MyFeedComponent';
+import { MFNavigatorSeperator } from './components/MyFeedNavigatorSeperator';
 
 function max(x, y) {
   return x > y ? x:y
@@ -132,7 +133,7 @@ export function MyFeed({navigation}) {
         </View>
       <View style={{paddingTop: 13, justifyContent: 'center', alignItems: "center"}}>
         <FlatList style = {{}} key={'<MyFeed>'} keyExtractor={item => "<MyFeed>" + item.id+"-"+item.date}  //columnWrapperStyle={{justifyContent: "space-between", marginBottom: 20}}
-        ItemSeparatorComponent={() => <View style={{height: flatlist_padding}} />} 
+        ItemSeparatorComponent={() => MFNavigatorSeperator()} 
         data={sortGameMediaData(getFavoriteGames(getRecentCompletedGames()), getFavoriteMedias(), getFavoriteGames(getRecentUncompletedGames()))} //recent_game_data.sort((a, b) => a.team_id.localeCompare(b.team_id))
         extraData={refresh_hook}
         scrollEnabled= {false}
@@ -188,7 +189,6 @@ export function GameScreen({navigation}) {
         </View>
       <View style={{paddingTop: 13, justifyContent: 'center', alignItems: "center", alignSelf: "flex-start"}}> 
         <FlatList style = {{}} key={'<GameScreen>'} keyExtractor={item => "<GameScreen>" + item.id+"-"+item.date}  //columnWrapperStyle={{justifyContent: "space-between", marginBottom: 20}}
-       // ItemSeparatorComponent={() => <View style={{height: flatlist_padding, backgroundColor: "green"}} />} 
         data={getAllSortedGames()} 
        extraData={refresh_hook} 
        scrollEnabled={false}
@@ -212,16 +212,16 @@ const styles = StyleSheet.create({
   },
   backgroundView: {
     paddingTop: 0, paddingBottom:10, margin: 0, justifyContent: 'flex-start',
-    backgroundColor: "#242424", flex:1, flexDirection:"column", height: "100%"
+    backgroundColor: "#1B2029", flex:1, flexDirection:"column", height: "100%"
   },
   homeHeader: {
     padding: 5, width: "100%",
-    backgroundColor: "#242424", justifyContent: "center",  //3483eb
+    backgroundColor: "#1B2029", justifyContent: "center",  //3483eb
     alignItems: "center", textAlign: "center", borderTopLeftRadius: 20,
     borderTopRightRadius: 20, paddingLeft: 10
   },
   gamesView: {
-    backgroundColor: '#242424',
+    backgroundColor: '#1B2029',
     margin: 0,
     paddingBottom: 10,
     marginBottom: 10,
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   newsView: {
-    backgroundColor: '#242424',
+    backgroundColor: '#1B2029',
     margin: 10,
     height: '100%',
     borderRadius: 20,

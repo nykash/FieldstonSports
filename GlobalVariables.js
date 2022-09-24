@@ -38,11 +38,7 @@ export async function saveToDevice(key, value) {
 
 export async function loadFromDevice(key, val="") {
     const result = await SecureStore.getItemAsync(key)
-    if (result) {
-        alert("🔐 Here's your value 🔐 \n" + result+val);
-      } else {
-        alert('No values stored under that key.');
-      }
+
     return JSON.parse(result);
 }
   
@@ -296,6 +292,5 @@ export const normalize = (size) => {
 export async function flipFavoriteDataEntry(key) {
     favorite_data[key] = !favorite_data[key]
     await saveToDevice("favorite_data", favorite_data)
-    alert(JSON.stringify(favorite_data)+ " THIS SEC")
 }
 

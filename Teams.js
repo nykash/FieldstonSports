@@ -15,18 +15,12 @@ function getTeamsNameId() {
   for (let i = 0; i < team_data.length; i++) {
     result.push({name: team_data[i].team_name, id: team_data[i].id})
   }
-  console.log(result)
-  console.log("oononono")
 
   return result
 }
 
 
 export default function TeamScreen({navigation}) {
-
-    const [fall_show_teams, set_fall_show_teams] = useState(false);
-    const [winter_show_teams, set_winter_show_teams] = useState(false);
-    const [spring_show_teams, set_spring_show_teams] = useState(false);
     const [text, onChangeText] = React.useState("");
     const [teams_name_id_data, set_teams_id_data] = useState(getTeamsNameId());
     const [should_refresh, set_should_refresh] = useState(false)
@@ -41,10 +35,6 @@ export default function TeamScreen({navigation}) {
       let text_words = text.toLowerCase().split(" ")
       let name_words = name.toLowerCase().split(" ")
 
-      console.log("wordswords")
-      console.log(text_words)
-      console.log(name_words)
-
       for (let i = 0; i < text_words.length; i++) {
         let done = false
         for (let j = 0; j < name_words.length & !done; j++) {
@@ -57,9 +47,6 @@ export default function TeamScreen({navigation}) {
     }
 
     function filter_teams(text) {
-      console.log("filtering")
-      //console.log("loggering")
-      //console.log(temp_teams)
       set_teams_id_data(tot_teams.filter((a) => valid_name(text, a.name)|(text.trim().length === 0)))
     }
 
@@ -72,8 +59,6 @@ export default function TeamScreen({navigation}) {
       flipFavoriteDataEntry(id)
       refresh()
       set_refresh_hook(!refresh_hook)
-      console.log("fav data")
-      console.log(favorite_data)
     }
 
 
@@ -82,19 +67,18 @@ export default function TeamScreen({navigation}) {
       <View style={{marginBottom: "5%", justifyContent: "center", alignItems: "center"}}>
         <Text style={{textAlign: "center", color:"white", fontFamily: "Roboto_400Regular"}}>Search For a Team To Add</Text>
       </View>
-      <Pressable onPress={() => {console.log("no")}}>
-        <TextInput
-          style={styles.input}
-          onChangeText={textChanged}
-          value={text}
-          onFocus={() => console.log("nah")}
-        />
-      </Pressable>
+  
+      <TextInput
+        style={styles.input}
+        onChangeText={textChanged}
+        value={text}
+        onFocus={() => (null)}
+      />
 
       <View style={{paddingTop: 13, justifyContent: 'center', alignItems: "center", alignSelf: "flex-start"}}>
-        <FlatList style = {{}} key={'<TeamSearch>'} keyExtractor={item => "<TeamSearch>" + item.id}  //columnWrapperStyle={{justifyContent: "space-between", marginBottom: 20}}
+        <FlatList style = {{}} key={'<TeamSearch>'} keyExtractor={item => "<TeamSearch>" + item.id}  
         ItemSeparatorComponent={() => <View style={{height: 0}} />} 
-        data={teams_name_id_data} //recent_game_data.sort((a, b) => a.team_id.localeCompare(b.team_id))
+        data={teams_name_id_data} 
         scrollEnabled= {false}
         numColumns={1} keyExtraction={item => item.id}
         extraData={set_should_refresh} 
