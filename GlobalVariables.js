@@ -2,7 +2,8 @@ import GlobalStore from 'react-native-global-state-hooks';
 import { initializeApp } from "firebase/app";
 import { getFirestore, setDoc, doc, getDoc } from 'firebase/firestore';
 import {useAsyncEffect} from 'use-async-effect'
-
+import * as SecureStore from 'expo-secure-store'
+import { Dimensions } from 'react-native';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC352iiXQYJ_lsY8idqN0fe6AzGQBJoF2E",
@@ -28,6 +29,22 @@ export let recent_game_data = [
 
 ]
 
+export async function saveToDevice(key, value) {
+    console.log("KEY VAL KEY VAL")
+    console.log(key)
+    console.log(value)
+    await SecureStore.setItemAsync(key, JSON.stringify(value))
+}
+
+export async function loadFromDevice(key, val="") {
+    const result = await SecureStore.getItemAsync(key)
+    if (result) {
+        alert("🔐 Here's your value 🔐 \n" + result+val);
+      } else {
+        alert('No values stored under that key.');
+      }
+    return JSON.parse(result);
+}
   
 export let medias = [
 
@@ -47,7 +64,7 @@ export let medias = [
 //         {id: "M-BVS", date: "7/10/2022", title: "Boys Varity Soccer Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-BVS", date: "7/11/2022", title: "Boys Varity Soccer Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-BVS", date: "7/12/2022", title: "Boys Varity Soccer MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], favorite: false, season: 'fall'
+//       ], roster: [], standings: [], season: 'fall', team_name:"Boys Varsity Soccer"
 //     },
 
 //     {name:"VGL", id:"VGLS", schedule: [
@@ -64,7 +81,7 @@ export let medias = [
 //         {id: "M-VGL", date: "7/12/2022", title: "Girls Varity Lacrosse Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-VGL", date: "7/10/2022", title: "Girls Varity Lacrosse Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-VGL", date: "7/5/2022", title: "Girls Varity Lacrosse MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], favorite: true, season: 'spring'
+//       ], roster: [], standings: [], season: 'spring', team_name: "Varsity Girls Lacrosse"
 //     },
 
 //     {name:"JVV", id:"JVVF", schedule: [
@@ -81,7 +98,7 @@ export let medias = [
 //         {id: "M-VVF", date: "7/16/2022", title: "JV Volleybal Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-VVF", date: "7/14/2022", title: "JV Volleybal Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-VVF", date: "7/10/2022", title: "JV Volleybal MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], favorite: true, season: 'fall'
+//       ], roster: [], standings: [], season: 'fall', team_name: "JV Volleyball"
 //     },
 
 //     {name:"GVS", id:"GVSF", schedule: [
@@ -98,7 +115,7 @@ export let medias = [
 //         {id: "M-GVS", date: "7/4/2022", title: "Girls Varity Soccer Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-GVS", date: "7/9/2022", title: "Girls Varity Soccer Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-GVS", date: "7/12/2022", title: "Girls Varity Soccer MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], favorite: true, season: 'fall'
+//       ], roster: [], standings: [], season: 'fall', team_name: "Girls Varsity Soccer"
 //     },
 //     {name:"JVF", id:"JVFF", schedule: [
 //         {id: "G-JVF", date: "7/12/2022", title: "Football (JV)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1},
@@ -114,29 +131,36 @@ export let medias = [
 //         {id: "M-JVF", date: "7/10/2022", title: "JV Football Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-JVF", date: "7/14/2022", title: "JV Football Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
 //         {id: "M-JVF", date: "7/15/2022", title: "JV Football MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], favorite: true, season: 'fall'
+//       ], roster: [], standings: [], season: 'fall', team_name: "JV Football"
 //     },
 
 // ]
 
-export let team_data = [];
+
+//export let team_data = [];
+export let team_data = []
 export function setTeamData(data) {
     team_data = data
-    console.log(team_data)
     createRecentGameData()
     createMediaData()
-    createFavoriteData()
+}
+
+export async function setFavoriteData(data) {
+    favorite_data = data
+    console.log(data)
+    await saveToDevice("favorite_data", favorite_data)
 }
 
 function initDatabaseValues() {
     setDoc(doc(firestore, "mega_data", "teams"), {"data": team_data});
 }
 
+
 function pullDatabaseValuesTeamData() {
     return getDoc(doc(firestore, "mega_data", "teams"));
 }
 
-
+//initDatabaseValues()
 
 //initDatabaseValues()
 //export let team_data = pullDatabaseValuesTeamData()
@@ -189,8 +213,6 @@ export function createFavoriteData() {
     }
 }
 
-createFavoriteData()
-
 export let refresh_data = 0;
 
 export function isFavorite(team_id) {
@@ -231,6 +253,9 @@ export function getFavoriteGames(elements) {
     let favorite_games = [] 
     for (let i = 0; i < elements.length; i++) {
         if(favorite_data[elements[i].team_id]) {favorite_games.push(elements[i])}
+        console.log("L BOZO")
+        console.log(favorite_data[elements[i].team_id])
+        console.log(elements[i].team_id)
     }
 
     console.log(favorite_games)
@@ -246,3 +271,31 @@ export function getFavoriteMedias() {
 
     return favorite_medias
 }
+
+export function getTeamDataByName(name) {
+    for (let i = 0; i < team_data.length; i++) {
+        if (team_data.team_id == name) {
+            return team_data[i]
+        }
+    }
+}
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 320;
+
+export const normalize = (size) => {
+  const newSize = size * scale;
+  if (Platform.OS === 'ios') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize));
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
+  }
+};
+
+export async function flipFavoriteDataEntry(key) {
+    favorite_data[key] = !favorite_data[key]
+    await saveToDevice("favorite_data", favorite_data)
+    alert(JSON.stringify(favorite_data)+ " THIS SEC")
+}
+

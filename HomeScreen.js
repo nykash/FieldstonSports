@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SGInfo from './components/ShortGameInfo';
 import MediaInfo from './components/MediaInfo';
-import { StyleSheet, TouchableOpacity, Text, View, FlatList, Image, SafeAreaView, ImageBackground, ScrollView, Touchable, LayoutAnimation} from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View, FlatList, Image, SafeAreaView, ImageBackground, ScrollView, Touchable, LayoutAnimation, Dimensions} from 'react-native';
 import AppLoading from "expo-app-loading";
 import { useRefreshGlobal, getFavoriteGames, getFavoriteMedias} from './GlobalVariables';
 import moment from "moment"
@@ -19,6 +19,7 @@ import {
   Lato_400Regular
 } from "@expo-google-fonts/dev";
 import { add, or } from 'react-native-reanimated';
+import { MyFeedComponent } from './components/MyFeedComponent';
 
 function max(x, y) {
   return x > y ? x:y
@@ -59,9 +60,9 @@ function sortGameMediaData(games, medias) {
   console.log("we got a sorter")
   console.log(favorite_data)
   let master_data = []
-  let counter = 0;
+  console.log(team_data.length)
   for (let i = 0; i < team_data.length; i++) {
-    if (!team_data[i].favorite) {continue}
+    if (!favorite_data[team_data[i].id]) {continue}
     //data.filter((item) => item.state == 'New York').map(({id, name, city}) => ({id, name, city}));
     let team_games = games.filter((item) => team_data[i].id == item.team_id)
     team_games = team_games.sort((a, b) => {return moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYYY"))? -1:1})
@@ -69,23 +70,29 @@ function sortGameMediaData(games, medias) {
     let team_medias = medias.filter((item) => team_data[i].id == item.team_id)
     team_medias = team_medias.sort((a, b) => {return moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYYY"))? -1:1})
 
+    console.log(team_games)
+
     let team_future_games = recent_game_data.filter((item) => team_data[i].id == item.team_id)
     team_future_games = team_future_games.sort((a, b) => {return moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYYY"))? -1:1})
 
-    let add_new = []
-    //add_new.push({id:"s"+(counter++), name: team_data[i].id})
+    let add_new = {}
+    let counter = 0
 
-    if (team_games.length > 0) {add_new.push(team_games[0])}
+    if (team_games.length > 0) {add_new["game"] = team_games[0]}
     //if (team_future_games.length > 0) {add_new.push({id: "F"+team_data[i].id, team_id: team_data[i].team_id, games: team_future_games})}
-    if (team_medias.length > 0) {add_new.push(team_medias[0])}
+    if (team_medias.length > 0) {add_new["media"] = team_medias[0]}
 
-    if (add_new.length != 0) {
+    if (Object.keys(add_new).length != 0) {
+      add_new["name"] = {name: team_data[i].team_name}
       master_data.push(add_new)
     }
+
+    console.log(master_data)
     
   }
-  master_data = master_data.sort((a, b) => {return moment(a[0].date, "MM/DD/YYYY").isAfter(moment(b[0].date, "MM/DD/YYYY"))? -1:1})
-  master_data = flatten(master_data)
+  //master_data = master_data.sort((a, b) => {return moment(a["game"].date, "MM/DD/YYYY").isAfter(moment(b["game"].date, "MM/DD/YYYY"))? -1:1})
+ // master_data = flatten(master_data)
+  console.log("I AM")
   console.log(master_data)
   return master_data
 }
@@ -107,10 +114,13 @@ export function MyFeed({navigation}) {
   const flatlist_padding = 23;
   const background_image = require("./assets/eagle.png")
   const [refresh_hook, set_refresh_hook] = useRefreshGlobal();
+  const [favorites, set_favorites] = useState(favorite_data)
 
   if (!fontsLoaded) {
     return (<AppLoading></AppLoading>)
   } else {
+
+
     let counter = -1; // //{height: clamp_value(count(Object.values(favorite_data), true)*(flatlist_padding+150), 250, 500)}
     return (
     <SafeAreaView style={styles.backgroundView}>
@@ -122,15 +132,12 @@ export function MyFeed({navigation}) {
         </View>
       <View style={{paddingTop: 13, justifyContent: 'center', alignItems: "center"}}>
         <FlatList style = {{}} key={'<MyFeed>'} keyExtractor={item => "<MyFeed>" + item.id+"-"+item.date}  //columnWrapperStyle={{justifyContent: "space-between", marginBottom: 20}}
-        ItemSeparatorComponent={() => <View style={{height: 0}} />} 
+        ItemSeparatorComponent={() => <View style={{height: flatlist_padding}} />} 
         data={sortGameMediaData(getFavoriteGames(getRecentCompletedGames()), getFavoriteMedias(), getFavoriteGames(getRecentUncompletedGames()))} //recent_game_data.sort((a, b) => a.team_id.localeCompare(b.team_id))
-      //  extraData={refresh_hook}
+        extraData={refresh_hook}
         scrollEnabled= {false}
         numColumns={1} keyExtraction={item => item.id+"-"+item.date} 
-        renderItem={({item}) => item.id[0]=="G"? <SGInfo item={item} index={counter++} animation={true}> 
-        </SGInfo>: (item.id[0]=="s"?
-        <View style={{height:60, justifyContent:"center", alignItems:"center"}}><Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular'}}>{item.name}</Text></View>
-        :(item.id[0]=="F"?<ScheduleView item={item}></ScheduleView>:<MediaInfo item={item}></MediaInfo>))}>
+        renderItem={({item}) => <MyFeedComponent item={item}></MyFeedComponent>}>
         </FlatList>
       </View>
       </View>
@@ -146,7 +153,7 @@ function getAllSortedGames() {
   for (let i = 0; i < team_data.length; i++) {
     const sorted_games = sortDate(team_data[i].schedule).filter((item) => item.homeScore != undefined)
 
-    result_games.push({"id": team_data[i].id, "games": sorted_games})
+    result_games.push({"id": team_data[i].id, "games": sorted_games, team_name: team_data[i].team_name})
   }
 
   return result_games
@@ -177,18 +184,16 @@ export function GameScreen({navigation}) {
       <ScrollView>
       <View style={styles.gamesView}>
         <View style={styles.homeHeader}>
-          <Text style={styles.regText}>Today</Text>
+          <Text style={styles.regText}>Team Records</Text>
         </View>
-      <View style={{paddingTop: 13, justifyContent: 'center', alignItems: "center"}}> 
+      <View style={{paddingTop: 13, justifyContent: 'center', alignItems: "center", alignSelf: "flex-start"}}> 
         <FlatList style = {{}} key={'<GameScreen>'} keyExtractor={item => "<GameScreen>" + item.id+"-"+item.date}  //columnWrapperStyle={{justifyContent: "space-between", marginBottom: 20}}
-        ItemSeparatorComponent={() => <View style={{height: flatlist_padding}} />} 
+       // ItemSeparatorComponent={() => <View style={{height: flatlist_padding, backgroundColor: "green"}} />} 
         data={getAllSortedGames()} 
-        //data={recent_game_data.sort((a, b) => (a.f < b.f) ? 1:-1)} 
-        //.sort((a, b) => ((favorite_data[a.team_id]? 1:0) < (favorite_data[b.team_id]? 1:0)) ? 1:-1)
-       // data={recent_game_data.sort((a, b) => (favorite_data[a.team_id] < favorite_data[b.team_id]) ? 1:-1)} 
        extraData={refresh_hook} 
        scrollEnabled={false}
         numColumns={1} keyExtraction={item => item.id+"-"+item.date} renderItem={({item}) => <GSInfo item={item} index={counter++}></GSInfo>}></FlatList>
+        <View style={{height: 100}}></View>
       </View>
       </View>
       </ScrollView>
@@ -217,7 +222,8 @@ const styles = StyleSheet.create({
   },
   gamesView: {
     backgroundColor: '#242424',
-    margin: 10,
+    margin: 0,
+    paddingBottom: 10,
     marginBottom: 10,
     borderRadius: 20,
     textAlign: "center",
