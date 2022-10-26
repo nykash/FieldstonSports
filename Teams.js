@@ -31,6 +31,11 @@ export default function TeamScreen({navigation}) {
       set_should_refresh(!should_refresh)
     }
 
+    async function refresh_glob() {
+      set_refresh_hook(!refresh_hook)
+
+    }
+
     function valid_name(text, name) {
       let text_words = text.toLowerCase().split(" ")
       let name_words = name.toLowerCase().split(" ")
@@ -58,7 +63,7 @@ export default function TeamScreen({navigation}) {
     function starLogic(id) {
       flipFavoriteDataEntry(id)
       refresh()
-      set_refresh_hook(!refresh_hook)
+  //    refresh_glob()
     }
 
 
@@ -97,7 +102,7 @@ export default function TeamScreen({navigation}) {
               </View>
               <Pressable onPress={() => (starLogic(item.id))}>
               <View style={{flex: 1}}>
-                <Icon name={favorite_data[item.id]? "star":"staro"} size={30} color="#EFE14D"></Icon>
+                <Icon name={favorite_data[item.id]? "star":"staro"} size="29" color="#EFE14D"></Icon>
               </View>
               </Pressable>
             </View>

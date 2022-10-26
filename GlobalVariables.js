@@ -47,94 +47,130 @@ export let medias = [
 ]
 // export let team_data = [
 //     {name:"BVS", id:"BVSF", schedule: [
-//         {id: "G-BVS", date: "7/16/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1},
-//         {id: "G-BVS", date: "7/15/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0},
-//         {id: "G-BVS", date: "7/13/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Riverdale", homeScore: 3, awayScore: 2},
-//         {id: "G-BVS", date: "7/11/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Hackley", homeScore: 2, awayScore: 1},
-//         {id: "G-BVS", date: "7/21/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-BVS", date: "7/25/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Dalton",},
-//         {id: "G-BVS", date: "7/29/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Riverdale",},
-//         {id: "G-BVS", date: "8/2/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-BVS", date: "8/5/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Collegiate",},
+//         {team_id: "BVSF", id: "G-BVS", date: "7/16/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "BVSF", id: "G-BVS", date: "7/15/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "BVSF", id: "G-BVS", date: "7/13/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Riverdale", homeScore: 3, awayScore: 2, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "BVSF", id: "G-BVS", date: "7/11/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Hackley", homeScore: 2, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "BVSF", id: "G-BVS", date: "7/21/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "BVSF", id: "G-BVS", date: "7/25/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Dalton",},
+//         {team_id: "BVSF", id: "G-BVS", date: "7/29/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Riverdale",},
+//         {team_id: "BVSF", id: "G-BVS", date: "8/2/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "BVSF", id: "G-BVS", date: "8/5/2022", title: "Boys Soccer (V)", home: "Fieldston", away: "Collegiate",},
 //       ], news: [
-//         {id: "M-BVS", date: "7/10/2022", title: "Boys Varity Soccer Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-BVS", date: "7/11/2022", title: "Boys Varity Soccer Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-BVS", date: "7/12/2022", title: "Boys Varity Soccer MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], season: 'fall', team_name:"Boys Varsity Soccer"
+//         {team_id: "BVSF", id: "M-BVS", date: "8/12/2022", title: "Boys Varity Soccer MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "BVSF", id: "M-BVS", date: "7/10/2022", title: "Boys Varity Soccer Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "BVSF", id: "M-BVS", date: "7/11/2022", title: "Boys Varity Soccer Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "BVSF", id: "M-BVS", date: "7/12/2022", title: "Boys Varity Soccer MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//       ], roster: {img: "https://www.usab.com/-/media/754cd0a2af6846709878f30d7a9f1c77.jpg?h=600&iar=0&w=1280&hash=BD750D0F7762AF8139C8C2E24957C5A6", players: 
+//         ['Antony Mendez', 'Shane Vang', 'Courtney Paul', 'Saniyah Crosby', 'Raiden Graves', 'Aryanna Pena', 'Maurice Burke', 'Kallie Fitzpatrick', 'Hana Carson', 'Elizabeth Michael', 'Savion Lewis', 'Jaliyah Frank']
+//       }, standings: [], season: 'fall', team_name:"Boys Varsity Soccer",
+//         pictures: [
+//             {team_id: "BVSF", id:"P-BVS", date: "8/1/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "BVSF", caption: "wow this picture is a picture and its cool"},
+//             {team_id: "BVSF", id:"P-BVS", date: "7/12/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "BVSF", caption: "wow this picture is a picture and its cool"},
+//         ]
 //     },
 
 //     {name:"VGL", id:"VGLS", schedule: [
-//         {id: "G-VGL", date: "7/18/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Poly", homeScore: 9, awayScore: 1},
-//         {id: "G-VGL", date: "7/14/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Dalton", homeScore: 5, awayScore: 4},
-//         {id: "G-VGL", date: "7/12/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Riverdale", homeScore: 8, awayScore: 3},
-//         {id: "G-VGL", date: "7/6/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Hackley", homeScore: 3, awayScore: 1},
-//         {id: "G-VGL", date: "7/21/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-VGL", date: "7/25/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Dalton",},
-//         {id: "G-VGL", date: "7/29/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Riverdale",},
-//         {id: "G-VGL", date: "8/2/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-VGL", date: "8/5/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Collegiate",},
+//         {team_id: "VGLS", id: "G-VGL", date: "7/18/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Poly", homeScore: 9, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "VGLS", id: "G-VGL", date: "7/14/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Dalton", homeScore: 5, awayScore: 4, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "VGLS", id: "G-VGL", date: "7/12/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Riverdale", homeScore: 8, awayScore: 3, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "VGLS", id: "G-VGL", date: "7/6/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Hackley", homeScore: 3, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "VGLS", id: "G-VGL", date: "7/21/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "VGLS", id: "G-VGL", date: "7/25/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Dalton",},
+//         {team_id: "VGLS", id: "G-VGL", date: "7/29/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Riverdale",},
+//         {team_id: "VGLS", id: "G-VGL", date: "8/2/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "VGLS", id: "G-VGL", date: "8/5/2022", title: "Girls Lacrosse (V)", home: "Fieldston", away: "Collegiate",},
 //       ], news: [
-//         {id: "M-VGL", date: "7/12/2022", title: "Girls Varity Lacrosse Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-VGL", date: "7/10/2022", title: "Girls Varity Lacrosse Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-VGL", date: "7/5/2022", title: "Girls Varity Lacrosse MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], season: 'spring', team_name: "Varsity Girls Lacrosse"
+//         {team_id: "VGLS", id: "M-VGL", date: "8/0/2022", title: "Girls Varity Lacrosse Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "VGLS", id: "M-VGL", date: "7/12/2022", title: "Girls Varity Lacrosse Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "VGLS", id: "M-VGL", date: "7/10/2022", title: "Girls Varity Lacrosse Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "VGLS", id: "M-VGL", date: "7/5/2022", title: "Girls Varity Lacrosse MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//       ], roster: {img: "https://www.usab.com/-/media/754cd0a2af6846709878f30d7a9f1c77.jpg?h=600&iar=0&w=1280&hash=BD750D0F7762AF8139C8C2E24957C5A6", players: 
+//         ['Antony Mendez', 'Shane Vang', 'Courtney Paul', 'Saniyah Crosby', 'Raiden Graves', 'Aryanna Pena', 'Maurice Burke', 'Kallie Fitzpatrick', 'Hana Carson', 'Elizabeth Michael', 'Savion Lewis', 'Jaliyah Frank']
+//       }, standings: [], season: 'spring', team_name: "Varsity Girls Lacrosse",
+//       pictures: [
+//           {team_id: "VGLS", id:"P-VGL", date: "7/18/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "VGLS", caption: "wow this picture is a picture and its cool"},
+//           {team_id: "VGLS", id:"P-VGL", date: "7/5/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "VGLS", caption: "wow this picture is a picture and its cool"},
+//       ]
 //     },
 
 //     {name:"JVV", id:"JVVF", schedule: [
-//         {id: "G-VVF", date: "7/18/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1},
-//         {id: "G-VVF", date: "7/17/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0},
-//         {id: "G-VVF", date: "7/16/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Riverdale", homeScore: 31, awayScore: 3},
-//         {id: "G-VVF", date: "7/12/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Hackley", homeScore: 2, awayScore: 1},
-//         {id: "G-VVF", date: "7/21/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-VVF", date: "7/25/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Dalton",},
-//         {id: "G-VVF", date: "7/29/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Riverdale",},
-//         {id: "G-VVF", date: "8/2/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-VVF", date: "8/5/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Collegiate",},
+//         {team_id: "JVVF", id: "G-VVF", date: "7/18/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVVF", id: "G-VVF", date: "7/17/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVVF", id: "G-VVF", date: "7/16/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Riverdale", homeScore: 31, awayScore: 3, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVVF", id: "G-VVF", date: "7/12/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Hackley", homeScore: 2, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVVF", id: "G-VVF", date: "7/21/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "JVVF", id: "G-VVF", date: "7/25/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Dalton",},
+//         {team_id: "JVVF", id: "G-VVF", date: "7/29/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Riverdale",},
+//         {team_id: "JVVF", id: "G-VVF", date: "8/2/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "JVVF", id: "G-VVF", date: "8/5/2022", title: "Volleyball (JV)", home: "Fieldston", away: "Collegiate",},
 //     ], news: [
-//         {id: "M-VVF", date: "7/16/2022", title: "JV Volleybal Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-VVF", date: "7/14/2022", title: "JV Volleybal Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-VVF", date: "7/10/2022", title: "JV Volleybal MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], season: 'fall', team_name: "JV Volleyball"
+//         {team_id: "JVVF", id: "M-VVF", date: "8/1/2022", title: "JV Volleybal Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+
+//         {team_id: "JVVF", id: "M-VVF", date: "7/16/2022", title: "JV Volleybal Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "JVVF", id: "M-VVF", date: "7/14/2022", title: "JV Volleybal Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "JVVF", id: "M-VVF", date: "7/10/2022", title: "JV Volleybal MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//       ], roster: {img: "https://www.usab.com/-/media/754cd0a2af6846709878f30d7a9f1c77.jpg?h=600&iar=0&w=1280&hash=BD750D0F7762AF8139C8C2E24957C5A6", players: [
+//         'Antony Mendez', 'Shane Vang', 'Courtney Paul', 'Saniyah Crosby', 'Raiden Graves', 'Aryanna Pena', 'Maurice Burke', 'Kallie Fitzpatrick', 'Hana Carson', 'Elizabeth Michael', 'Savion Lewis', 'Jaliyah Frank']
+// }, standings: [], season: 'fall', team_name: "JV Volleyball",
+//       pictures: [
+//         {team_id: "JVVF", id:"P-BVS", date: "7/2/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "JVVF", caption: "wow this picture is a picture and its cool"},
+//         {team_id: "JVVF", id:"P-BVS", date: "7/18/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "JVVF", caption: "wow this picture is a picture and its cool"},
+//     ]
 //     },
 
 //     {name:"GVS", id:"GVSF", schedule: [
-//         {id: "G-GVS", date: "7/5/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1},
-//         {id: "G-GVS", date: "7/6/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0},
-//         {id: "G-GVS", date: "7/10/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Riverdale", homeScore: 2, awayScore: 3},
-//         {id: "G-GVS", date: "7/15/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Hackley", homeScore: 6, awayScore: 1},
-//         {id: "G-GVS", date: "7/21/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-GVS", date: "7/25/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Dalton",},
-//         {id: "G-GVS", date: "7/29/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Riverdale",},
-//         {id: "G-GVS", date: "8/2/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-GVS", date: "8/5/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Collegiate",},
+//         {team_id: "GVSF", id: "G-GVS", date: "7/5/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "GVSF", id: "G-GVS", date: "7/6/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "GVSF", id: "G-GVS", date: "7/10/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Riverdale", homeScore: 2, awayScore: 3, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "GVSF", id: "G-GVS", date: "7/15/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Hackley", homeScore: 6, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "GVSF", id: "G-GVS", date: "7/21/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "GVSF", id: "G-GVS", date: "7/25/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Dalton",},
+//         {team_id: "GVSF", id: "G-GVS", date: "7/29/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Riverdale",},
+//         {team_id: "GVSF", id: "G-GVS", date: "8/2/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "GVSF", id: "G-GVS", date: "8/5/2022", title: "Girls Soccer (V)", home: "Fieldston", away: "Collegiate",},
 //       ], news: [
-//         {id: "M-GVS", date: "7/4/2022", title: "Girls Varity Soccer Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-GVS", date: "7/9/2022", title: "Girls Varity Soccer Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-GVS", date: "7/12/2022", title: "Girls Varity Soccer MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], season: 'fall', team_name: "Girls Varsity Soccer"
+//          {team_id: "GVSF", id: "M-GVS", date: "8/12/2022", title: "Girls Varity Soccer Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "GVSF", id: "M-GVS", date: "7/4/2022", title: "Girls Varity Soccer Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "GVSF", id: "M-GVS", date: "7/9/2022", title: "Girls Varity Soccer Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "GVSF", id: "M-GVS", date: "7/12/2022", title: "Girls Varity Soccer MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//       ], roster: {img: "https://www.usab.com/-/media/754cd0a2af6846709878f30d7a9f1c77.jpg?h=600&iar=0&w=1280&hash=BD750D0F7762AF8139C8C2E24957C5A6", players: 
+//         ['Antony Mendez', 'Shane Vang', 'Courtney Paul', 'Saniyah Crosby', 'Raiden Graves', 'Aryanna Pena', 'Maurice Burke', 'Kallie Fitzpatrick', 'Hana Carson', 'Elizabeth Michael', 'Savion Lewis', 'Jaliyah Frank']
+//       }, standings: [], season: 'fall', team_name: "Girls Varsity Soccer",
+//       pictures: [
+//         {team_id: "GVSF", id:"P-BVS", date: "7/5/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "GVSF", caption: "wow this picture is a picture and its cool"},
+//         {team_id: "GVSF", id:"P-BVS", date: "8/5/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "GVSF", caption: "wow this picture is a picture and its cool"},
+//     ]
 //     },
 //     {name:"JVF", id:"JVFF", schedule: [
-//         {id: "G-JVF", date: "7/12/2022", title: "Football (JV)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1},
-//         {id: "G-JVF", date: "7/13/2022", title: "Football (JV)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0},
-//         {id: "G-JVF", date: "7/16/2022", title: "Football (JV)", home: "Fieldston", away: "Riverdale", homeScore: 31, awayScore: 3},
-//         {id: "G-JVF", date: "7/17/2022", title: "Football (JV)", home: "Fieldston", away: "Hackley", homeScore: 2, awayScore: 1},
-//         {id: "G-JVF", date: "7/21/2022", title: "Football (JV)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-JVF", date: "7/25/2022", title: "Football (JV)", home: "Fieldston", away: "Dalton",},
-//         {id: "G-JVF", date: "7/29/2022", title: "Football (JV)", home: "Fieldston", away: "Riverdale",},
-//         {id: "G-JVF", date: "8/2/2022", title: "Football (JV)", home: "Fieldston", away: "Hackley",},
-//         {id: "G-JVF", date: "8/5/2022", title: "Football (JV)", home: "Fieldston", away: "Collegiate",},
+//         {team_id: "JVFF", id: "G-JVF", date: "7/12/2022", title: "Football (JV)", home: "Fieldston", away: "Poly", homeScore: 7, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVFF", id: "G-JVF", date: "7/13/2022", title: "Football (JV)", home: "Fieldston", away: "Dalton", homeScore: 9, awayScore: 0, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVFF", id: "G-JVF", date: "7/16/2022", title: "Football (JV)", home: "Fieldston", away: "Riverdale", homeScore: 31, awayScore: 3, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVFF", id: "G-JVF", date: "7/17/2022", title: "Football (JV)", home: "Fieldston", away: "Hackley", homeScore: 2, awayScore: 1, pictures:"https://media0.giphy.com/media/5C6ZE1ehlCuze/giphy.gif"},
+//         {team_id: "JVFF", id: "G-JVF", date: "7/21/2022", title: "Football (JV)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "JVFF", id: "G-JVF", date: "7/25/2022", title: "Football (JV)", home: "Fieldston", away: "Dalton",},
+//         {team_id: "JVFF", id: "G-JVF", date: "7/29/2022", title: "Football (JV)", home: "Fieldston", away: "Riverdale",},
+//         {team_id: "JVFF", id: "G-JVF", date: "8/2/2022", title: "Football (JV)", home: "Fieldston", away: "Hackley",},
+//         {team_id: "JVFF", id: "G-JVF", date: "8/5/2022", title: "Football (JV)", home: "Fieldston", away: "Collegiate",},
 //       ], news: [
-//         {id: "M-JVF", date: "7/10/2022", title: "JV Football Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-JVF", date: "7/14/2022", title: "JV Football Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//         {id: "M-JVF", date: "7/15/2022", title: "JV Football MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
-//       ], roster: [], standings: [], season: 'fall', team_name: "JV Football"
+//         {team_id: "JVFF", id: "M-JVF", date: "8/3/2022", title: "JV Football Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "JVFF", id: "M-JVF", date: "7/10/2022", title: "JV Football Dominate Season", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "JVFF", id: "M-JVF", date: "7/14/2022", title: "JV Football Overwhelm Tournament", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//         {team_id: "JVFF", id: "M-JVF", date: "7/15/2022", title: "JV Football MVP Candidates", blurb: "This is some sample text and should be the approprite length for a summary/hook to an article."},
+//       ], roster: {img: "https://www.usab.com/-/media/754cd0a2af6846709878f30d7a9f1c77.jpg?h=600&iar=0&w=1280&hash=BD750D0F7762AF8139C8C2E24957C5A6", players: [
+//         'Antony Mendez', 'Shane Vang', 'Courtney Paul', 'Saniyah Crosby', 'Raiden Graves', 'Aryanna Pena', 'Maurice Burke', 'Kallie Fitzpatrick', 'Hana Carson', 'Elizabeth Michael', 'Savion Lewis', 'Jaliyah Frank']
+//       }, standings: [], season: 'fall', team_name: "JV Football",
+//       pictures: [
+//         {team_id: "JVFF", id:"P-BVS", date: "8/1/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "JVFF", caption: "wow this picture is a picture and its cool"},
+//         {team_id: "JVFF", id:"P-BVS", date: "7/25/2022", url: "https://i.ytimg.com/vi/tUzcjhn-4NI/maxresdefault.jpg", team_id: "JVFF", caption: "wow this picture is a picture and its cool"},
+//     ]
 //     },
 
 // ]
 
+export let team_data = [];
 
-//export let team_data = [];
-export let team_data = []
+//export let team_data = []
 export function setTeamData(data) {
     team_data = data
     createRecentGameData()
@@ -157,9 +193,6 @@ function pullDatabaseValuesTeamData() {
 }
 
 //initDatabaseValues()
-
-//initDatabaseValues()
-//export let team_data = pullDatabaseValuesTeamData()
 
 
 export function createRecentGameData() {
@@ -212,13 +245,7 @@ export function createFavoriteData() {
 export let refresh_data = 0;
 
 export function isFavorite(team_id) {
-    for (let i = 0; i < team_data.length; i++) {
-        if (team_data[i].id != team_id) {continue}
-
-        return team_data[i].favorite
-    }
-
-    return false
+    return favorite_data[team_id]
 }
 
 export function flipFavorite(team_id) {
@@ -294,3 +321,7 @@ export async function flipFavoriteDataEntry(key) {
     await saveToDevice("favorite_data", favorite_data)
 }
 
+
+export function getTeamIndexId(id) {
+    return team_data.map((e) => e.id).indexOf(id)
+}
