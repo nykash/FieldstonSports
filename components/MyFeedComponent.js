@@ -19,7 +19,7 @@ export const MyFeedComponent = ({item}) => {
     const border_radius = 30;
     return (
         <View style={{}}>
-            <View style={{width: Dimensions.get("window").width, padding: 20, borderRadius: border_radius, backgroundColor: "rgba(52, 52, 52, 0.4)"}}>
+            {/* <View style={{width: Dimensions.get("window").width, padding: 20, borderRadius: border_radius, backgroundColor: "rgba(52, 52, 52, 0.4)"}}>
             <CardFlip style={{height:Dimensions.get("window").height/3, padding: 0, borderRadius: border_radius}} ref={(card) => set_this_card(card)} >
                 <TouchableOpacity style={{}} onPress={() => this_card.flip()}>
                 <ImageBackground style={{borderRadius: border_radius}} resizeMode="cover" source={{uri: "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt7303dbbd1a3d1a0f/60dc14d30401cb0ebfac1a00/40a30288ba7955266913a7414a3f5473a09070f2.jpg"}}>
@@ -48,7 +48,7 @@ export const MyFeedComponent = ({item}) => {
                 </ImageBackground>
                 </TouchableOpacity>
             </CardFlip>
-            </View>
+            </View> */}
 
             <View style={{height: Dimensions.get("window").height/30}}></View>
             

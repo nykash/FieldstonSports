@@ -6,6 +6,7 @@ import { useRefreshGlobal } from '../GlobalVariables';
 import moment from 'moment';
 import { convertDateToText } from '../DatesHelper';
 import SGInfo from './ShortGameInfo';
+import { BGInfoModal } from './BigGameInfo';
 
 import {
   useFonts,
@@ -37,15 +38,18 @@ function repChar(char, x) {
   return new Array().join(char, x)
 }
 
-const TeamGSInfo = ({item, index, animation=false}) => {
+export const TeamGSInfo = ({item, index, animation=false}) => {
   const {id, team_id, date, title, home, away, homeScore, awayScore} = item;
+  const [modalOpen, setModalOpen] = useState(false)
+
   let favorite = isFavorite(team_id)
   
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Lato_400Regular
   });
-  const ronaldo = require("C:/Users/dassu/OneDrive/documents/FieldstonSports/assets/ronaldo.jpg")
+  const ronaldo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN7OTrofOmbBHd1Dk8IbOfQ3rIHJeUBUN1Xg&usqp=CAU'
+  //const ronaldo = require("C:/Users/dassu/OneDrive/documents/FieldstonSports/assets/ronaldo.jpg")
   const [refresh_hook, set_refresh_hook] = useRefreshGlobal()
 
   const RenderRight = (progress, dragX) => {
@@ -94,7 +98,7 @@ const TeamGSInfo = ({item, index, animation=false}) => {
   }
 
   return (
-      <View style={[{alignItems: "center", flexDirection: "row", width:300,padding: 5, paddingLeft:20, paddingRight:20, borderBottomColor: "black", borderBottomWidth: 1}, styles.boxShadow]}>
+      <TouchableOpacity onPress={() => {setModalOpen(true)}} style={[{alignItems: "center", flexDirection: "row", width:300,padding: 5, paddingLeft:20, paddingRight:20}]}>
           
           <View style={{width: "30%", flexDirection: "row", justifyContent: "center"}}>
             <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular'}}>{convertDateToText(date)}</Text>
@@ -107,28 +111,30 @@ const TeamGSInfo = ({item, index, animation=false}) => {
             <View style={{flexDirection: "row", width: "100%", alignItems: "center"}}>
               <View style={{width: "65%", flexDirection: "row"}}>
                 <View style={{width:20}}></View>  
-                <Text style={{textAlign: "center", color: "#ffa319", fontFamily: 'Roboto_400Regular'}}>{home}</Text>
+                <Text style={{textAlign: "center", color: "#ffa319", fontFamily: 'Lato_400Regular'}}>{home}</Text>
                 <View style={{width:20}}></View>  
               </View>
               
               <View style={{width:20}}>
-                <Text style={{textAlign: "center", color: "#ffa319", fontFamily: 'Roboto_400Regular'}}>{homeScore}</Text> 
+                <Text style={{textAlign: "center", color: "#ffa319", fontFamily: 'Lato_400Regular'}}>{homeScore}</Text> 
               </View>  
 
             </View>
             <View style={{flexDirection: "row", width: "100%", alignItems: "center"}}>
               <View style={{width: "65%", flexDirection: "row"}}>
                 <View style={{width:20}}></View> 
-                <Text style={{textAlign: "center", color: "#f54242", fontFamily: 'Roboto_400Regular'}}>{away}</Text>
+                <Text style={{textAlign: "center", color: "#6597fc", fontFamily: 'Lato_400Regular'}}>{away}</Text>
                 <View style={{width:20}}></View>
               </View>
               
               <View style={{width:20}}>
-                <Text style={{textAlign: "center", color: "#f54242", fontFamily: 'Roboto_400Regular'}}>{awayScore}</Text> 
+                <Text style={{textAlign: "center", color: "#6597fc", fontFamily: 'Lato_400Regular'}}>{awayScore}</Text> 
               </View>   
             </View>
           </View>
-      </View>
+          <BGInfoModal item={item} modalOpen={modalOpen} setModalOpen={setModalOpen}></BGInfoModal>
+
+      </TouchableOpacity>
   )
 }
 
@@ -148,7 +154,7 @@ const GSInfo = ({item, index, animation=false}) => {
     if (!show_team) {
       return (
         <TouchableOpacity onPress={() =>set_show_team(!show_team)} style={{backgroundColor: "rgba(52, 52, 52, 0.4)", width: "100%"}}>
-        <View style={{padding: 10, backgroundColor: "rgba(52, 52, 52, 0.4)", width: Dimensions.get("window").width, height: Dimensions.get("window").height/10, justifyContent: "center", alignContent: "center", borderBottomColor: "black", borderBottomWidth: 1}}>
+        <View style={{padding: 10, backgroundColor: "rgba(52, 52, 52, 0.4)", width: Dimensions.get("window").width, height: Dimensions.get("window").height/10, justifyContent: "center", alignContent: "center"}}>
           <View style={{width: "100%", justifyContent: "center", alignContent: "center", textAlign: "center"}}>
             <Text style={{color: "#f4f4f4",fontFamily: "Roboto_400Regular", textAlign: "center"}}>{team_name}</Text>
           </View>
