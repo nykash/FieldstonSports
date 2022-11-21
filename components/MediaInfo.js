@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, Linking } from 'react-native'
 import React from 'react'
 import moment from 'moment/moment';
 import {
@@ -10,11 +10,12 @@ import {
   Lato_400Regular
 } from "@expo-google-fonts/dev";
 import { convertDateToText } from '../DatesHelper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const MediaInfo = ({item, border_radius=0}) => {
-    let {id, date, title, blurb, picture} = item;
-    picture = "https://cdn.britannica.com/15/201015-050-E24FA163/Field-hockey-match-Poland-Spain-2017.jpg"
+    let {id, date, title, blurb, picture, link} = item;
+   // picture = "https://cdn.britannica.com/15/201015-050-E24FA163/Field-hockey-match-Poland-Spain-2017.jpg"
 
     let [fontsLoaded] = useFonts({
       Roboto_400Regular,
@@ -48,6 +49,7 @@ const MediaInfo = ({item, border_radius=0}) => {
     }
 
     return (
+      <TouchableOpacity onPress={() => {Linking.openURL(link)}}>
         <View style={[styles.homeHeader, {borderRadius: "10%"}]}>
           <Image style={{width: "100%", height: undefined, aspectRatio: 3/2, borderRadius: "10%"}} source={{uri: picture}}></Image>
             <View style={{padding: 20}}>
@@ -61,6 +63,7 @@ const MediaInfo = ({item, border_radius=0}) => {
               </View>
             </View>
         </View>
+        </TouchableOpacity>
     )
 }
 const styles = StyleSheet.create({
@@ -73,12 +76,12 @@ const styles = StyleSheet.create({
 
     blurbText: {
       color: "#f4f4f4",
-      fontFamily: "Roboto_400Regular"
+      fontFamily: "Lato_400Regular"
     },
   
     regText: {
       color: "#ffa319",
-      fontFamily: 'Roboto_500Medium'
+      fontFamily: 'Oswald_400Regular'
     }
   });
   

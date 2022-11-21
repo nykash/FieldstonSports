@@ -58,8 +58,8 @@ const layoutAnimConfig = {
 const SGInfo = ({item, index, animation=false}) => {
     let {id, team_id, date, title, home, away, homeScore, awayScore, homeUrl, awayUrl, pictures, team_name} = item;
     
-    homeUrl = "https://schoolassets.s3.amazonaws.com/logos/49851/49851.png"
-    awayUrl = "https://upload.wikimedia.org/wikipedia/en/c/cf/Horace_Mann_School_emblem.png"
+    // homeUrl = "https://schoolassets.s3.amazonaws.com/logos/49851/49851.png"
+    // awayUrl = "https://upload.wikimedia.org/wikipedia/en/c/cf/Horace_Mann_School_emblem.png"
     if (!item) {
       return (
         <View style={{height: 0}}>
@@ -102,7 +102,7 @@ const SGInfo = ({item, index, animation=false}) => {
           </View>
           <View style={{width: "100%", flex: 10, justifyContent: "center", alignItems: "center"}}>
           <TouchableOpacity style={{backgroundColor: "rgba(255, 255, 255, 0.08)", flex: 7, width: "100%", paddingBottom: 20, borderRadius: "10%", overflow: "hidden",}} onPress={() => {setModalOpen(true)}}>
-            <ImageBackground style={{width: "100%", aspectRatio:3/2}} source={{uri: pictures}} resizeMode="cover">
+            <ImageBackground style={{width: "100%", aspectRatio:3/2}} source={{uri: pictures[0]}} resizeMode="cover">
               <View style={{flex: 2, width: "100%"}}></View>
             </ImageBackground>
             <Text style={{marginTop: "5%", textAlign: "center", color: "#f4f4f4", fontFamily: "Lato_400Regular"}}>This is an intro to a game summary</Text>

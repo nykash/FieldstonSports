@@ -3,7 +3,7 @@ import SGInfo from './components/ShortGameInfo';
 import MediaInfo from './components/MediaInfo';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text,Image, View, Button, Pressable, TextInput, FlatList, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
-import { favorite_data, team_data, flipFavoriteDataEntry, useRefreshGlobal } from './GlobalVariables';
+import { favorite_data, team_data, flipFavoriteDataEntry, useRefreshGlobal, getTeamIndexId } from './GlobalVariables';
 import SportTeamInfo from './components/SportTeamInfo';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -87,9 +87,9 @@ export default function TeamScreen({navigation}) {
         scrollEnabled= {false}
         numColumns={1} keyExtraction={item => item.id}
         extraData={set_should_refresh} 
-        renderItem={({item}) => 
+        renderItem={({item, idx}) => 
         <View style={{borderBottomColor: "black", borderBottomWidth: 1}}>
-          <TouchableOpacity style={{flexDirection: "row", backgroundColor: "rgba(52, 52, 52, 0.6)", width: Dimensions.get("window").width, padding: 20, paddingRight: 75, height: Dimensions.get("window").height/10, alignItems: "center"}}>
+          <TouchableOpacity style={{flexDirection: "row", backgroundColor: "rgba(52, 52, 52, 0.6)", width: Dimensions.get("window").width, padding: 20, paddingRight: 75, height: Dimensions.get("window").height/10, alignItems: "center"}} onPress={() => {navigation.navigate("Teams", {given_team_idx: getTeamIndexId(item.id)})}}>
             <View style={{flex: 2}}>
             <Text style={{color: "#f4f4f4", fontFamily: 'Roboto_400Regular'}}>
               {item.name}

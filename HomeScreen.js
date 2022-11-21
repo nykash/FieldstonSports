@@ -197,6 +197,8 @@ export function MyFeed({navigation}) {
 
 
     let counter = -1; // //{height: clamp_value(count(Object.values(favorite_data), true)*(flatlist_padding+150), 250, 500)}
+    console.log("UNDER THE SEA")
+    console.log(team_data)
     return (
     <SafeAreaView style={styles.backgroundView}>
       
@@ -350,12 +352,10 @@ export function GameScreen({route, navigation}) {
                         }}>
         <View style={{width: "100%", alignSelf: "flex-start", paddingBottom: 50}}>
 
-          {/* <View style={{width: "100%", justifyContent: 'center', alignItems: "center", alignSelf: "flex-start", padding: 40, backgroundColor: "#212121", borderRadius: "10%"}}>
-            <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular', fontSize: 17}}>{team_data[team_idx].team_name}</Text>
-          </View> */}
-
+          <View style={{width: "100%", justifyContent: 'center', alignItems: "center", alignSelf: "flex-start", padding: 20, backgroundColor: "#212121", borderRadius: "10%"}}>
+            <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Oswald_400Regular', fontSize: 17}}>{team_data[team_idx].team_name}</Text>
+          </View>
           
-
 
           <View style={{width: "100%", justifyContent: 'center', alignItems: "center", alignSelf: "flex-start", backgroundColor: "#212121", borderRadius: "10%", marginTop: 20, padding: 20, paddingTop: 10}}> 
            

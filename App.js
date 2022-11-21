@@ -87,6 +87,7 @@ export default function App() {
       }
 
       setFavoriteData(temp_favorite) // function in GlobalVariables.js that sets favorite_data
+      console.log(team_data)
     });
 
 
@@ -107,7 +108,16 @@ export default function App() {
     return <AppLoading></AppLoading>
   }
 
+
   console.log("hi")
+  // if(team_data == []) {
+  //   console.log("getting favorite f data")  
+
+  //   getTeamData();
+  //   console.log(team_data)
+  //   getFavoriteData();
+  //   return <AppLoading></AppLoading>
+  // }
 
 
   return (
