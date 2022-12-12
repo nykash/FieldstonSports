@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SGInfo from './components/ShortGameInfo';
 import MediaInfo from './components/MediaInfo';
-import { StyleSheet, TouchableOpacity, Text, Modal, View, FlatList, Image, SafeAreaView, ImageBackground, ScrollView, Touchable, LayoutAnimation, Dimensions, Pressable, Linking} from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Modal, View, FlatList, Image, SafeAreaView, ImageBackground, ScrollView, Touchable, LayoutAnimation, Dimensions, Pressable} from 'react-native';
 import AppLoading from "expo-app-loading";
 import { useRefreshGlobal, getFavoriteGames, getFavoriteMedias, getTeamIndexId} from './GlobalVariables';
 import moment from "moment"
@@ -91,17 +91,16 @@ function getFavoriteField(data, columns, selectors={}) {
   return result
 }
 
-function getFavoriteIndices() {
-  let indices = []
-  for(let i = 0; i < team_data.length; i++) {
-    if(!team_data[i]) {
-      continue
+function getMostRecentFavoriteGames() {
+    let result = []
+    for(let i = 0; i < team_data.length; i++) {
+        if(!isFavorite(team_data[i].id)) {continue}
+        let sorted_games = team_data[i].schedule.sort((a, b) => {return (moment(a.date, "MM/DD/YYYY").isAfter(moment(b.date, "MM/DD/YYYY")) && a.awayScore)? -1:1})
+
+        result.push(sorted_games[0])
     }
 
-    indices.push(i)
-  }
-  
-  return indices
+    return result
 }
 
 function sortGameMediaData(data) {
@@ -174,7 +173,7 @@ function clamp_value(value, lower, upper) {
   return max(min(value, upper), lower)
 }
 
-export function MyFeed({navigation}) {
+export function MyFeedRev({navigation}) {
   
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -221,6 +220,58 @@ export function MyFeed({navigation}) {
           <Text style={[styles.regText, {fontWeight: '400'}]}></Text>
         </View>
         
+      <View style={{height: Dimensions.get("screen").height/5, width: "100%", paddingVertical: "5%"}}>
+        <View style={{height: "100%", width: "100%"}}>
+            <View style={{width: "100%", paddingHorizontal: "10%"}}>
+                
+                <Text style={{color: "#f4f4f4", fontFamily: 'Oswald_400Regular', fontSize: 23}}>Scores</Text>
+            </View>
+            <View style={{width: "100%", height: "100%"}}>
+                <FlatList data={getMostRecentFavoriteGames()} keyExtractor={item => "<MyFeedScores>"+item.id+"-"+item.date} key={"<MyFeedScores>"}
+                    extraData={refresh_hook}
+                    horizontal={true}
+                    ItemSeparatorComponent = {() => {
+                        return (
+                            <View style={{width: Dimensions.get("window").width/20}}>
+
+                            </View>
+                        )
+                    }}
+                    renderItem = {({item}) => {
+                        return <View style={{height: "100%", backgroundColor: "#212121", width: Dimensions.get("window").width/4, paddingHorizontal: "10%"}}>
+                            <View style={{flexDirection: "row"}}>
+                                <View style={{flex: 9}}>
+                                    <Text style={{color: "#f4f4f4", fontFamily: 'Lato_400Regular', fontSize: 12}}>{item.home}</Text>
+                                </View>
+                                <View style={{flex: 1}}>
+                                    <Text style={{color: "#f4f4f4", fontFamily: 'Lato_400Regular', fontSize: 12}}>{item.homeScore}</Text>
+                                </View>
+                               
+                            </View>
+
+                            <View style={{flexDirection: "row"}}>
+                                <View style={{flex: 9}}>
+                                    <Text style={{color: "#f4f4f4", fontFamily: 'Lato_400Regular', fontSize: 12}}>{item.away}</Text>
+                                </View>
+                                <View style={{flex: 1}}>
+                                    <Text style={{color: "#f4f4f4", fontFamily: 'Lato_400Regular', fontSize: 12}}>{item.awayScore}</Text>
+                                </View>
+                            </View>
+
+                            <View>
+
+                            </View>
+
+                        </View>
+                    }} 
+                > 
+
+                </FlatList>
+            </View>
+
+        </View>
+      </View>
+
       <View style={{paddingTop: 13, justifyContent: 'center', alignItems: "center"}}>
         <FlatList style = {{}} key={'<MyFeed>'} keyExtractor={item => "<MyFeed>" + item.id+"-"+item.date}  //columnWrapperStyle={{justifyContent: "space-between", marginBottom: 20}}
     //    ItemSeparatorComponent={() => MFNavigatorSeperator()} 
@@ -505,111 +556,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     flex: 1,
   },
-  blurbText: {
-    color: "#f4f4f4",
-    fontFamily: "Lato_400Regular"
-  },
-
-  regText: {
-    color: "#ffa319",
-    fontFamily: 'Oswald_400Regular'
-  },
   backgroundImage: {
 
   }
 });
-
-
-export function MediaScreen({navigation}) {
-
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Lato_400Regular
-  });
-
-  const head_article = sortDate(team_data[getFavoriteIndices()[0]].news)[0]
-  const fav_head_articles = []
-  const fav_teams = getFavoriteIndices()
-  for(let i = 0; i < fav_teams.length; i++) {
-    fav_head_articles.push(sortDate(team_data[fav_teams[i]].news)[0])
-  }
-
-  const flatlist_padding = 23;
-  const background_image = require("./assets/eagle.png")
-  if (!fontsLoaded) {
-    return (<AppLoading></AppLoading>)
-  } else {
-  return (
-    <SafeAreaView style={styles.backgroundView}>
-      {/* <View style={styles.headerView}>
-       <Image
-        style={styles.eagleStyle}
-        source={require('./assets/eagle.png')}
-  />
-      </View> */}
-      <ScrollView>
-      <View style={styles.newsView}>
-        {/* <View style={styles.homeHeader}>
-          <Text style={styles.regText}>This Week</Text>
-        </View> */}
-        <TouchableOpacity onPress={() => {Linking.openURL(head_article.link)}}>
-        <View style={{borderRadius: "10%"}}>
-          <ImageBackground style={{width: "100%", height: undefined, aspectRatio: 3/2, borderRadius: "10%"}} source={{uri: head_article.picture}}>
-            <View style={{backgroundColor: "rgba(0, 0, 0, 0.55)", width: "100%", height: "100%"}}>
-            <View style={{padding: 20}}>
-                <View style={{flexDirection: "row", marginBottom: 20, justifyContent: "center", alignItems: "center"}}>
-                  {/* <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular'}}>{convertDateToText(date)}</Text> */}
-                </View>
-                <Text style={[styles.regText, {marginBottom:30}]}>{head_article.title}</Text>
-                <Text style={styles.blurbText}>{head_article.blurb}</Text>
-                <View style={{width: "100%", paddingLeft: 0}}>
-                  <Text style={{marginTop: "5%", color: "#f4f4f4AA", fontSize: 12, fontFamily: "Roboto_400Regular"}}>{moment.utc(head_article.date).local().startOf('seconds').fromNow()}</Text>
-              </View>
-            </View>
-            </View>
-            </ImageBackground>
-        </View>
-        </TouchableOpacity>
-        
-        <View style={{width: "100%", flexDirection: "row", paddingVertical: 10}}>
-          <FlatList style = {{marginTop: 8}} key={'<SideScrollMedias>'} keyExtractor={item => "<SideScrollMedias>" + item.id+"-"+item.date} scrollEnabled={true}
-          data={fav_head_articles}  keyExtraction={item => item.id+"-"+item.date} 
-          horizontal={true}
-          renderItem={({item}) => {
-            const {picture, link, title, blurb, date} = item
-            return (
-              <TouchableOpacity style={{height: undefined, width: Dimensions.get("window").width*4/6, aspectRatio: 3/2}} onPress={() => {Linking.openURL(link)}}>
-                <View style={{borderRadius: "10%"}}>
-                  <ImageBackground style={{width: "100%", height: undefined, aspectRatio: 3/2, borderRadius: "10%"}} source={{uri: picture}}>
-                    <View style={{backgroundColor: "rgba(0, 0, 0, 0.55)", width: "100%", height: "100%"}}>
-                    <View style={{padding: 20}}>
-                        <View style={{flexDirection: "row", marginBottom: 20, justifyContent: "center", alignItems: "center"}}>
-                          {/* <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular'}}>{convertDateToText(date)}</Text> */}
-                        </View>
-                        <Text style={[styles.regText, {marginBottom:"5%"}]}>{title}</Text>
-                        <Text style={styles.blurbText}>{blurb}</Text>
-                       
-                    </View>
-                    </View>
-                    </ImageBackground>
-                </View>
-                </TouchableOpacity>
-            )
-          }}
-
-          ItemSeparatorComponent={() => <View style={{width: flatlist_padding}} />} 
-          ></FlatList>
-        </View>
-        
-
-        <FlatList style = {{marginTop: 8}} key={'#'} keyExtractor={item => "#" + item.id+"-"+item.date} scrollEnabled={false}
-          data={sortDate(medias)} numColumns={1} keyExtraction={item => item.id+"-"+item.date} renderItem={({item}) => <MediaInfo item={item}></MediaInfo>}
-          ItemSeparatorComponent={() => <View style={{height: flatlist_padding}} />} 
-          ></FlatList>
-               
-      </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-    }
-}

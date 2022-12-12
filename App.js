@@ -16,6 +16,7 @@ import AppLoading from "expo-app-loading";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { MyFeedRev } from './HomeScreenRevised';
 
 
 const SlideTransition = {
