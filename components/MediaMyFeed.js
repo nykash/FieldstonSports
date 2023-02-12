@@ -19,7 +19,7 @@ function sortDate(elements) {
 
 const MediaMFComponent = ({item, border_radius=0}) => {
     let {id, date, title, blurb, picture, team_id, link} = item;
-    picture = "https://cdn.britannica.com/15/201015-050-E24FA163/Field-hockey-match-Poland-Spain-2017.jpg"
+ //   picture = "https://cdn.britannica.com/15/201015-050-E24FA163/Field-hockey-match-Poland-Spain-2017.jpg"
 
     let [fontsLoaded] = useFonts({
       Roboto_400Regular,
@@ -77,7 +77,8 @@ const MediaMFComponent = ({item, border_radius=0}) => {
 
               </TouchableOpacity>
               
-              <TouchableOpacity style={{flexDirection: "row", justifyContent: "center", alignItems: "center", flex: 1}} onPress={() => {Linking.openURL(medias[0].link)}}>
+              {medias.length > 1 &&
+                  <TouchableOpacity style={{flexDirection: "row", justifyContent: "center", alignItems: "center", flex: 1}} onPress={() => {Linking.openURL(medias[0].link)}}>
                   <View style={{flex: 2}}>
                     <Ionicons name="md-list" size={25} color="#f4f4f4"></Ionicons>
                   </View>
@@ -85,9 +86,10 @@ const MediaMFComponent = ({item, border_radius=0}) => {
                   <View style={{flex: 11}}>
                       <Text numberOfLines={1} style={{color: "#f4f4f4", fontSize: 14, fontFamily: "Oswald_400Regular"}}>{medias[0].title}</Text>
                   </View>
-              </TouchableOpacity>
+              </TouchableOpacity>}
 
-              <TouchableOpacity style={{flexDirection: "row", justifyContent: "center", alignItems: "center", flex: 1}} onPress={() => {Linking.openURL(medias[1].link)}}>
+             {medias.length > 1 && 
+                <TouchableOpacity style={{flexDirection: "row", justifyContent: "center", alignItems: "center", flex: 1}} onPress={() => {Linking.openURL(medias[1].link)}}>
                   <View style={{flex: 2}}>
                     <Ionicons name="md-list" size={25} color="#f4f4f4"></Ionicons>
                   </View>
@@ -95,7 +97,7 @@ const MediaMFComponent = ({item, border_radius=0}) => {
                   <View style={{flex: 11}}>
                       <Text numberOfLines={1} style={{color: "#f4f4f4", fontSize: 14, fontFamily: "Oswald_400Regular"}}>{medias[1].title}</Text>
                   </View>
-              </TouchableOpacity>
+              </TouchableOpacity>}
 
             </View>
         </View>

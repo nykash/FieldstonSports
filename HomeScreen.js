@@ -393,10 +393,10 @@ export function GameScreen({route, navigation}) {
 
 
             <View style={{width: "100%", justifyContent: "center", alignItems: "center", padding: 20, backgroundColor: "#212121", borderRadius: "10%", marginVertical: 20}}>
-              <TouchableOpacity style={{paddingBottom: 20, backgroundColor:"rgba(255, 255, 255, 0.05)", borderRadius: "10%"}} onPress={() => setPlayerModal(true)}>
+               {/*<TouchableOpacity style={{paddingBottom: 20, backgroundColor:"rgba(255, 255, 255, 0.05)", borderRadius: "10%"}} onPress={() => setPlayerModal(true)}>
                 <Image style={{width: "100%", height: undefined, aspectRatio: 3/2, borderTopLeftRadius: "10%", borderTopRightRadius: "10%", overflow: "hidden"}} source={{uri: team_data[team_idx].roster.img}}></Image>
-                <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular', fontSize: 14, paddingTop: 20}}>Team Roster</Text>
-              </TouchableOpacity>
+              <Text style={{textAlign: "center", color: "#f4f4f4", fontFamily: 'Roboto_400Regular', fontSize: 14, paddingTop: 20}}>Team Roster</Text>
+              </TouchableOpacity>*/}
             <Modal visible={openPlayerModal} transparent={true} animationType="slide">
               <SafeAreaView>
                   <View style={{backgroundColor: "#212121", height: "100%"}}>
@@ -531,7 +531,10 @@ export function MediaScreen({navigation}) {
   const fav_head_articles = []
   const fav_teams = getFavoriteIndices()
   for(let i = 0; i < fav_teams.length; i++) {
-    fav_head_articles.push(sortDate(team_data[fav_teams[i]].news)[0])
+    if(team_data[fav_teams[i]].news.length > 0) {
+      fav_head_articles.push(sortDate(team_data[fav_teams[i]].news)[0])
+
+    }
   }
 
   const flatlist_padding = 23;
